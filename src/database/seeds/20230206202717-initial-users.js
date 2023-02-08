@@ -24,6 +24,7 @@ module.exports = {
         ...user,
         user: {
           fullName: 'Bob Richard',
+          code: 'CUST001',
           bod: '1990-01-02',
           address: 'Jl. ABC No.12',
         },

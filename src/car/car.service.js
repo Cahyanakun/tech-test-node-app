@@ -1,6 +1,6 @@
 const BaseRepository = require('../common/helper/BaseRepository');
 const { car } = require('../database/models');
 
-class carService extends BaseRepository {}
+class CarService extends BaseRepository {}
 
-module.exports = new carService(car);
+module.exports = new CarService(car);

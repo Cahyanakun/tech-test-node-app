@@ -34,10 +34,20 @@ const destroy = catchAsync(async (req, res) => {
   apiResponse(res, 'Success Deleted', user);
 });
 
+const getMe = catchAsync(async (req, res) => {
+  const { account } = req;
+  if (!account.user) {
+    throw new ApiError(httpStatus.UNPROCESSABLE_ENTITY, err.message);
+  }
+  let result = await userService.findWitBalance(account.user.id);
+  apiResponse(res, 'Get profile detail', result);
+});
+
 module.exports = {
   create,
   list,
   show,
   update,
   destroy,
+  getMe,
 };

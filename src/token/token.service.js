@@ -30,23 +30,6 @@ const generatePairToken = (payload) => {
   };
 };
 
-const generateOtpToken = (payload) => {
-  const hashedOtp = security.hash(payload.otp);
-  const token = _signToken({ hashedOtp, email: payload.email, type: tokenTypes.OTP }, '2m');
-  const payloadInfo = takePayload(token);
-  return {
-    otpToken: token,
-    exp: payloadInfo.exp,
-  };
-};
-
-const generateValidOtpToken = (otpToken) => {
-  return verifyToken(otpToken, (err, payload) => {
-    if (err) return null;
-    return _signToken({ email: payload.email, type: tokenTypes.VALID_OTP });
-  });
-};
-
 const generateResetPasswordToken = (email) => {
   return _signToken({ email, type: tokenTypes.RESET_PASSWORD }, 3600 * 24);
 };
@@ -71,8 +54,6 @@ module.exports = {
   generatePairToken,
   refreshAccessToken,
   buildLoginToken,
-  generateOtpToken,
-  generateValidOtpToken,
   takePayload,
   generateResetPasswordToken,
 };

@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       accountId: DataTypes.INTEGER,
       fullName: DataTypes.STRING,
+      code: DataTypes.STRING,
       bod: DataTypes.DATE,
       address: DataTypes.TEXT,
     },
@@ -25,5 +26,16 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     }
   );
+
+  user.afterCreate(async (instance, options) => {
+    if (instance.id < 10) {
+      await instance.update({ code: 'CUST00' + instance.id });
+    } else if (instance.id < 100) {
+      await instance.update({ code: 'CUST0' + instance.id });
+    } else {
+      await instance.update({ code: 'CUST' + instance.id });
+    }
+  });
+
   return user;
 };
