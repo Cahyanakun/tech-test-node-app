@@ -1,0 +1,38 @@
+{
+  "name": "skeleton",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2 start ecosystem.config.json --no-daemon",
+    "dev": "cross-env NODE_ENV=development nodemon src/index.js",
+    "migrate": "yarn sequelize-cli db:migrate",
+    "migration:create": "yarn sequelize-cli migration:create --underscored",
+    "model:create": "yarn sequelize-cli model:create --underscored",
+    "seed:create": "yarn sequelize-cli seed:generate",
+    "seed": "yarn sequelize-cli db:seed:all"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dayjs": "^1.11.7",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "helmet": "^6.0.1",
+    "http-status": "^1.6.2",
+    "joi": "^17.7.0",
+    "jsonwebtoken": "^9.0.0",
+    "morgan": "^1.10.0",
+    "pg": "^8.9.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.28.0",
+    "sequelize-cli": "^6.6.0",
+    "winston": "^3.8.2",
+    "xss-clean": "^0.1.1"
+  }
+}
